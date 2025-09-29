@@ -23,10 +23,10 @@ const galleryImages = [
   { src: image2, alt: "옛날 사진2", colSpan: 1 },
   { src: image3, alt: "최근 사진1", colSpan: 1 },
   { src: image4, alt: "최근 사진2", colSpan: 1 },
-  { src: imgae5, alt: "웨딩 사진1", colSpan: 1 },
-  { src: imgae6, alt: "웨딩 사진2", colSpan: 1 },
-  { src: imgae7, alt: "웨딩 사진3", colSpan: 1 },
-  { src: imgae8, alt: "웨딩 사진4", colSpan: 1 },
+  { src: image5, alt: "웨딩 사진1", colSpan: 1 },
+  { src: image6, alt: "웨딩 사진2", colSpan: 1 },
+  { src: image7, alt: "웨딩 사진3", colSpan: 1 },
+  { src: image8, alt: "웨딩 사진4", colSpan: 1 },
   // 💡 마지막 가족 사진 추가: colSpan을 2로 설정
   { src: familyImage, alt: "가족 사진", colSpan: 2 } 
 ];
