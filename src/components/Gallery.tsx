@@ -19,8 +19,8 @@ import familyImage from './image/family_01.jpg';
 
 // 갤러리 이미지 데이터 구조를 확장하여 colSpan(열 너비) 속성을 추가합니다.
 const galleryImages = [
-  { src: image1, alt: "옛날 사진1", colSpan: 1 },
   { src: image2, alt: "옛날 사진2", colSpan: 1 },
+  { src: image1, alt: "옛날 사진1", colSpan: 1 },
   { src: image3, alt: "최근 사진1", colSpan: 1 },
   { src: image4, alt: "최근 사진2", colSpan: 1 },
   { src: image5, alt: "웨딩 사진1", colSpan: 1 },
