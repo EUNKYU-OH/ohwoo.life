@@ -117,7 +117,7 @@ const copyToClipboard = (text: string, name: string) => {
 }; 
 
 // ------------------------------------ 
-// 3. AccountModal (팝업 배경 완전히 불투명하게 수정)
+// 3. AccountModal (팝업 배경 불투명 검은색으로 변경)
 // ------------------------------------ 
 interface AccountModalProps { 
   selectedAccounts: Account[]; 
@@ -137,10 +137,10 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
   const btnColor = isGroom ? 'text-indigo-600' : 'text-[#a37c35]';
   const btnHoverColor = isGroom ? 'hover:bg-indigo-50' : 'hover:bg-[#fcf5ec]';
 
-  // 모달 본체 UI (배경을 완전히 불투명하게 bg-black으로 수정)
+  // 모달 본체 UI: 배경을 불투명 검은색으로 변경 (bg-black)
   const modalContent = ( 
     <div 
-      className="fixed inset-0 bg-black flex items-center justify-center z-[9999] p-4" // ✅ bg-black으로 변경하여 완전히 불투명하게 만듦
+      className="fixed inset-0 bg-black flex items-center justify-center z-[9999] p-4" // ✅ 배경을 불투명 검은색으로 변경 (bg-black)
       onClick={(e) => { 
         // 배경 클릭 시 닫기
         if (e.target === e.currentTarget) { 
@@ -149,10 +149,11 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
       }} 
     > 
       <div 
-        className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm transform transition-all duration-300 z-50"
+        className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm transform transition-all duration-300 z-50" // 모달 본체는 흰색 배경 유지
         onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 배경 클릭 이벤트 방지
       > 
-        <div className="flex justify-between items-start mb-5 pb-2 border-b"> 
+        <div className="flex justify-between items-start mb-5 pb-2 border-b border-gray-100"> 
+          {/* 모달 헤더: 신랑 오은규님께 마음 전하실 곳 */}
           <h3 className={`text-xl font-bold ${headerColor}`}>{headerTitle}</h3> 
           <button 
             onClick={onClose} 
@@ -163,18 +164,22 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
           </button> 
         </div> 
 
-        <div className="space-y-4 max-h-80 overflow-y-auto"> 
+        <div className="space-y-3 max-h-80 overflow-y-auto pr-1"> 
           {selectedAccounts.map((account, index) => ( 
             <div 
               key={index} 
-              className="border border-gray-200 p-3 rounded-lg bg-gray-50 shadow-sm flex items-center justify-between"
+              // 계좌 정보 카드 디자인 (흰색 배경)
+              className="bg-white border border-gray-200 p-3 rounded-lg shadow-sm flex items-center justify-between"
             > 
               <div>
-                <p className="font-semibold text-gray-800">{account.bank} <span className="text-sm font-normal text-gray-600">({account.name})</span></p>
-                <p className="text-lg font-bold text-gray-700">{account.number}</p>
+                {/* 이름 및 은행 정보 */}
+                <p className="font-semibold text-gray-800">{account.bank} <span className="text-sm font-normal text-gray-500">({account.name})</span></p>
+                {/* 계좌번호 */}
+                <p className="text-lg font-bold text-gray-700 mt-1">{account.number}</p>
               </div>
+              {/* 복사 버튼 */}
               <button 
-                className={`flex-shrink-0 p-2 rounded-lg bg-white border border-gray-300 ${btnColor} ${btnHoverColor} transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+                className={`flex-shrink-0 p-2 rounded-lg bg-gray-100 border border-gray-300 ${btnColor} ${btnHoverColor} transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
                 onClick={() => copyToClipboard(account.number, account.name)}
                 aria-label={`${account.name} 계좌번호 복사`}
               >
@@ -198,7 +203,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
 }; 
 
 // ------------------------------------ 
-// 4. 메인 ContactInfo 
+// 4. 메인 ContactInfo (원본 디자인 유지)
 // ------------------------------------ 
 export function ContactInfo() { 
   const [isModalOpen, setIsModalOpen] = useState(false); 
