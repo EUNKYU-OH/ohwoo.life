@@ -140,7 +140,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
   // 모달 본체 UI: 배경을 불투명 검은색으로 변경 (bg-black)
   const modalContent = ( 
     <div 
-      className="fixed inset-0 bg-black flex items-center justify-center z-[9999] p-4" // ✅ 배경을 불투명 검은색으로 변경 (bg-black)
+      className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm transform transition-all duration-300 z-50" 
       onClick={(e) => { 
         // 배경 클릭 시 닫기
         if (e.target === e.currentTarget) { 
