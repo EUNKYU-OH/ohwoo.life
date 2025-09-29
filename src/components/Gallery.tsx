@@ -8,6 +8,11 @@ import image1 from './image/first_01.jpg';
 import image2 from './image/first_02.jpg';
 import image3 from './image/second_01.jpg';
 import image4 from './image/second_02.jpg';
+// ⭐️ 웨딩사진 Import (Vite/Webpack으로 Asset을 처리)
+import image5 from './image/JEJ_5338.jpg';
+import image6 from './image/JEJ_5370.jpg';
+import image7 from './image/JMD00086.jpg';
+import image8 from './image/JMD00234.jpg';
 // 💡 새로운 가족 사진 Import
 import familyImage from './image/family_01.jpg'; 
 
@@ -18,10 +23,10 @@ const galleryImages = [
   { src: image2, alt: "옛날 사진2", colSpan: 1 },
   { src: image3, alt: "최근 사진1", colSpan: 1 },
   { src: image4, alt: "최근 사진2", colSpan: 1 },
-  { src: "https://images.unsplash.com/photo-1676132068619-f015a54cee3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHx3ZWRkaW5nJTIwZHJlc3MlMjBlbGVnYW50fGVufDF8fHx8MTc1OTAzMzE1MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "웨딩드레스", colSpan: 1 },
-  { src: "https://images.unsplash.com/photo-1555475809-0cc59e0f1a6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHx3ZWRkaW5nJTIwcmluZ3MlMjBtYWNyb3xlbnwxfHx8fDE3NTkwMzMxNTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "결혼반지", colSpan: 1 },
-  { src: "https://images.unsplash.com/photo-1677691257237-3294c7fd18a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxicmlkYWwlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NTkwMzMxNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "신부 초상", colSpan: 1 },
-  { src: "https://images.unsplash.com/photo-1613067532651-7075a620c900?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHx3ZWRkaW5nJTIwdmVudWUlMjBkZWNvcmF0aW9ufGVufDF8fHx8MTc1OTAzMzE1Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "웨딩 장식", colSpan: 1 },
+  { src: imgae5, alt: "웨딩 사진1", colSpan: 1 },
+  { src: imgae6, alt: "웨딩 사진2", colSpan: 1 },
+  { src: imgae7, alt: "웨딩 사진3", colSpan: 1 },
+  { src: imgae8, alt: "웨딩 사진4", colSpan: 1 },
   // 💡 마지막 가족 사진 추가: colSpan을 2로 설정
   { src: familyImage, alt: "가족 사진", colSpan: 2 } 
 ];
