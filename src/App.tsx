@@ -4,7 +4,6 @@ import { WeddingDate } from './components/WeddingDate';
 import { Storytelling } from './components/Storytelling';
 import { ThankYou } from './components/ThankYou';
 import { Gallery } from './components/Gallery';
-import { Guestbook } from './components/Guestbook';
 import { ContactInfo } from './components/ContactInfo';
 
 export default function App() {
@@ -18,7 +17,6 @@ export default function App() {
           <Storytelling />
           <ThankYou />
           <Gallery />
-          <Guestbook />
           <ContactInfo />
         </div>
       </div>
