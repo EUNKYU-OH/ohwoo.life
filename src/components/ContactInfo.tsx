@@ -51,14 +51,14 @@ interface Account {
 }
 
 const accounts: Account[] = [
-  // 신랑측 계좌 정보 (더미 데이터)
-  { name: '신랑 오은규', bank: '카카오뱅크', number: '3333-01-1234567', isGroomSide: true },
-  { name: '아버지 오재환', bank: '국민은행', number: '123456-02-789012', isGroomSide: true },
-  { name: '어머니 임충화', bank: '신한은행', number: '110-345-678901', isGroomSide: true },
-  // 신부측 계좌 정보 (더미 데이터)
-  { name: '신부 우현지', bank: '우리은행', number: '1002-543-210987', isGroomSide: false },
-  { name: '아버지 우광제', bank: '농협', number: '302-0000-1234-01', isGroomSide: false },
-  { name: '어머니 권은미', bank: '하나은행', number: '999-888888-77777', isGroomSide: false },
+  // 신랑측 계좌 정보 (더미 데이터) - name 필드가 Contacts와 일치해야 합니다.
+  { name: '신랑 오은규', bank: '신한은행', number: '110 326 225187', isGroomSide: true },
+  { name: '아버지 오재환', bank: '농협은행', number: '471 02 174262', isGroomSide: true },
+  { name: '어머니 임충화', bank: '농협은행', number: '453141 56 047210', isGroomSide: true },
+  // 신부측 계좌 정보 (더미 데이터) - name 필드가 Contacts와 일치해야 합니다.
+  { name: '신부 우현지', bank: '하나은행', number: '605 910266 33307', isGroomSide: false },
+  { name: '아버지 우광제', bank: '농협은행', number: '302 144 580 7411', isGroomSide: false },
+  { name: '어머니 권은미', bank: '하나은행', number: '623 094320 00307', isGroomSide: false },
 ];
 
 // ------------------------------------
@@ -131,13 +131,16 @@ const copyToClipboard = (text: string, name: string) => {
 
 // ------------------------------------
 // 5. AccountCard 컴포넌트 (개별 계좌 정보 표시 및 복사 기능)
-//    - 이름, 은행명, 계좌번호 명시 및 전용 복사 버튼 포함
 // ------------------------------------
 interface AccountCardProps {
   account: Account;
 }
 
 const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
+  // 계좌 정보가 신랑측인지 신부측인지에 따라 복사 버튼 색상 조정
+  const color = account.isGroomSide ? 'indigo' : '[#a37c35]'; 
+  const hoverColor = account.isGroomSide ? 'indigo-100' : 'stone-100';
+
   return (
     <div 
       className="border border-gray-200 p-3 rounded-lg flex items-center justify-between bg-white shadow-sm transition-shadow duration-150"
@@ -147,12 +150,12 @@ const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
         {/* 이름 (Name) 및 은행명 (Bank Name) */}
         <p className="font-semibold text-base mb-0.5 truncate text-gray-800">{account.name} ({account.bank})</p>
         {/* 계좌번호 (Account Number) 강조 */}
-        <p className="text-sm text-indigo-600 font-bold truncate">{account.number}</p>
+        <p className={`text-sm text-${color}-600 font-bold truncate`}>{account.number}</p>
       </div>
 
       {/* 복사 버튼: 계좌번호 옆에 배치 */}
       <button 
-        className="flex-shrink-0 p-2 rounded-lg bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className={`flex-shrink-0 p-2 rounded-lg bg-${color}-50 text-${color}-600 hover:bg-${hoverColor} transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-${color}-500`}
         onClick={() => copyToClipboard(account.number, account.name)}
         aria-label={`${account.name} 계좌번호 복사`} // 접근성 향상
       >
@@ -167,20 +170,26 @@ const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
 // 4. AccountModal 컴포넌트
 // ------------------------------------
 interface AccountModalProps {
-  side: 'groom' | 'bride';
-  accounts: Account[];
+  // 이제 특정 개인의 계좌 정보만 담고 있는 배열을 받습니다.
+  selectedAccounts: Account[];
   onClose: () => void;
 }
 
-const AccountModal: React.FC<AccountModalProps> = ({ side, accounts, onClose }) => {
-  const isGroom = side === 'groom';
-  // 해당 측 계좌만 필터링
-  const filteredAccounts = accounts.filter(acc => acc.isGroomSide === isGroom);
+const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }) => {
   
+  // selectedAccounts가 비어있지 않다고 가정하고 첫 번째 계좌 정보를 사용
+  if (selectedAccounts.length === 0) return null;
+
+  const firstAccount = selectedAccounts[0];
+  const isGroom = firstAccount.isGroomSide;
+  const contactName = firstAccount.name; // 해당 인물의 이름 사용
+  
+  // Dynamic Header based on the person
   const headerColor = isGroom ? 'text-indigo-800' : 'text-[#a37c35]'; // 신랑/신부 색상 구분
+  const headerTitle = `${contactName}님께 마음 전하실 곳`;
 
   return (
-    // 모달 배경 및 중앙 정렬
+    // 모달 배경: 검은색 60% 투명도로 설정
     <div 
       className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
       onClick={(e) => {
@@ -190,13 +199,15 @@ const AccountModal: React.FC<AccountModalProps> = ({ side, accounts, onClose }) 
         }
       }}
     >
+      {/* 모달 본체: bg-white로 흰색 배경 적용 */}
       <div className={`
         bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm 
         transform transition-all duration-300
       `}>
         <div className="flex justify-between items-start mb-5 pb-2 border-b">
+          {/* 특정 인물의 이름으로 제목 표시 */}
           <h3 className={`text-xl font-bold ${headerColor}`}>
-            {isGroom ? '신랑측' : '신부측'} 마음 전하실 곳
+            {headerTitle}
           </h3>
           <button 
             onClick={onClose}
@@ -207,8 +218,8 @@ const AccountModal: React.FC<AccountModalProps> = ({ side, accounts, onClose }) 
         </div>
 
         <div className="space-y-4 max-h-80 overflow-y-auto pr-2">
-          {/* 필터링된 해당 측 계좌만 표시 */}
-          {filteredAccounts.map((account, index) => (
+          {/* 이제 특정 인물의 계좌(보통 1개)만 렌더링 */}
+          {selectedAccounts.map((account, index) => (
             <AccountCard key={index} account={account} />
           ))}
         </div>
@@ -230,16 +241,26 @@ const AccountModal: React.FC<AccountModalProps> = ({ side, accounts, onClose }) 
 // ------------------------------------
 export function ContactInfo() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalSide, setModalSide] = useState<'groom' | 'bride' | null>(null);
+  // 모달에 보여줄 특정 계좌 정보를 저장하는 상태로 변경
+  const [selectedAccounts, setSelectedAccounts] = useState<Account[]>([]);
 
-  const openAccountModal = (side: 'groom' | 'bride') => {
-    setModalSide(side);
-    setIsModalOpen(true);
+  // 특정 연락처의 이름으로 계좌를 찾아 모달을 엽니다.
+  const openAccountModal = (contactName: string) => {
+    // contactName과 일치하는 계좌만 찾습니다. (일반적으로 1개)
+    const targetAccounts = accounts.filter(acc => acc.name === contactName);
+
+    if (targetAccounts.length > 0) {
+        setSelectedAccounts(targetAccounts);
+        setIsModalOpen(true);
+    } else {
+        // 계좌 정보가 없는 경우 토스트 메시지 표시
+        showToast('해당 계좌 정보를 찾을 수 없습니다.', true);
+    }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setModalSide(null);
+    setSelectedAccounts([]); // 모달 닫을 때 상태 초기화
   };
 
   // 문자(SMS) 기능만 유지
@@ -284,7 +305,7 @@ export function ContactInfo() {
                     <Button 
                       size="sm" 
                       variant="outline"
-                      onClick={() => openAccountModal('groom')} // 신랑측 계좌 모달 열기
+                      onClick={() => openAccountModal(contact.name)} // ⭐️ 이름 전달!
                       className="flex-1 bg-white hover:bg-indigo-50 text-indigo-600 border-indigo-300"
                     >
                       <CreditCard size={14} className="mr-1" />
@@ -322,7 +343,7 @@ export function ContactInfo() {
                     <Button 
                       size="sm" 
                       variant="outline"
-                      onClick={() => openAccountModal('bride')} // 신부측 계좌 모달 열기
+                      onClick={() => openAccountModal(contact.name)} // ⭐️ 이름 전달!
                       className="flex-1 bg-white hover:bg-[#fcf9f4] text-[#a37c35] border-[#d8c7ac]"
                     >
                       <CreditCard size={14} className="mr-1" />
@@ -352,10 +373,9 @@ export function ContactInfo() {
       </div>
 
       {/* 계좌 정보 모달 팝업 렌더링 */}
-      {isModalOpen && modalSide && (
+      {isModalOpen && selectedAccounts.length > 0 && (
         <AccountModal 
-          side={modalSide} 
-          accounts={accounts} 
+          selectedAccounts={selectedAccounts} 
           onClose={closeModal} 
         />
       )}
