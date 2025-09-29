@@ -21,7 +21,7 @@ const galleryImages = [
   { src: image2, alt: "옛날 사진2", colSpan: 1 },
   { src: image3, alt: "최근 사진1", colSpan: 1 },
   { src: image4, alt: "최근 사진2", colSpan: 1 },
-  { src: "https://images.unsplash.com/photo-1676132068619-f015a54cee3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWRkaW5nJTIwZHJlc3MlMjBlbGVnYW50fGVufDF8fHx8MTc1OTAzMzE1MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "웨딩드레스", colSpan: 1 },
+  { src: "https://images.unsplash.com/photo-1676132068619-f015a54cee3d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHx3ZWRkaW5nJTIwZHJlc3MlMjBlbGVnYW50fGVufDF8fHx8MTc1OTAzMzE1MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "웨딩드레스", colSpan: 1 },
   { src: "https://images.unsplash.com/photo-1555475809-0cc59e0f1a6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHx3ZWRkaW5nJTIwcmluZ3MlMjBtYWNyb3xlbnwxfHx8fDE3NTkwMzMxNTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "결혼반지", colSpan: 1 },
   { src: "https://images.unsplash.com/photo-1677691257237-3294c7fd18a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxicmlkYWwlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NTkwMzMxNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "신부 초상", colSpan: 1 },
   { src: "https://images.unsplash.com/photo-1613067532651-7075a620c900?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHx3ZWRkaW5nJTIwdmVudWUlMjBkZWNvcmF0aW9ufGVufDF8fHx8MTc1OTAzMzE1Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral", alt: "웨딩 장식", colSpan: 1 },
@@ -44,7 +44,10 @@ export function Gallery() {
               key={index}
               // 💡 colSpan 값에 따라 클래스를 동적으로 적용합니다.
               className={`
-                ${image.colSpan === 2 ? 'col-span-2 aspect-[4/3]' : 'col-span-1 aspect-square'} 
+                ${image.colSpan === 2 
+                  ? 'col-span-2 h-auto' // 2열 차지, 높이는 내용물에 따라 자동 설정
+                  : 'col-span-1 aspect-square' // 1열 차지, 1:1 비율 유지
+                } 
                 overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity
               `}
               onClick={() => setSelectedImage(index)}
@@ -52,7 +55,8 @@ export function Gallery() {
               <ImageWithFallback
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover"
+                // 💡 1열 사진은 object-cover로 비율을 채우고, 2열 사진은 object-contain으로 전체를 보여줍니다.
+                className="w-full h-full object-cover" 
               />
             </div>
           ))}

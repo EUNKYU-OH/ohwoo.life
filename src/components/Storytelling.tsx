@@ -18,11 +18,11 @@ export function Storytelling() {
             </div>
             <h3 className="text-lg text-primary">첫 만남</h3>
             <p className="text-muted-foreground leading-relaxed">
-              2015년 26, 24 요가를 수련하며<br />
+              2015년 26, 24살 요가를 수련하며<br />
               함께 알게 된 누나 동생 사이가<br />
               아직 어른이 되기 전에 연인이 되어<br />
               행복한 2년 철없이 사랑하다<br />
-              사회에 나와 자리를 잡으며 놓쳤습니다.
+              사회에 나와 자리를 잡으며 서로를 놓쳤습니다.<br />
             </p>
           </div>
           
@@ -33,9 +33,9 @@ export function Storytelling() {
             </div>
             <h3 className="text-lg text-primary">운명의 재회</h3>
             <p className="text-muted-foreground leading-relaxed">
-              서로가 없는 시간 속에 정말 중요한<br />
-              정말 중요한 것을 알게 됐고<br />
-              10년만인 36, 34에 하늘이 저희를 다시 만나게 해줬습니다.<br />
+              서로가 없는 시간 속에 <br />
+              정말 중요한 것이 무엇인지 알게 됐고<br />
+              10년만인 36, 34살에 하늘이 저희를 다시 만나게 해줬습니다.<br />
             </p>
           </div>
           
