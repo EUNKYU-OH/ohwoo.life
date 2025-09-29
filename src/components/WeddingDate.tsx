@@ -13,11 +13,6 @@ export function WeddingDate() {
           </div>
           
           <div className="flex items-center justify-center space-x-2 text-muted-foreground">
-            <Clock size={18} />
-            <span>아침 혹은 늦게 일어나면 점심시간</span>
-          </div>
-          
-          <div className="flex items-center justify-center space-x-2 text-muted-foreground">
             <MapPin size={18} />
             <span>대전에서 태어났지만 서울에서</span>
           </div>
