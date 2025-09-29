@@ -143,6 +143,17 @@ const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
 // ------------------------------------
 // 4. AccountModal
 // ------------------------------------
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { X } from 'lucide-react';
+
+interface Account {
+  name: string;
+  bank: string;
+  number: string;
+  isGroomSide: boolean;
+}
+
 interface AccountModalProps {
   selectedAccounts: Account[];
   onClose: () => void;
@@ -153,31 +164,25 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
 
   const firstAccount = selectedAccounts[0];
   const isGroom = firstAccount.isGroomSide;
-  const contactName = firstAccount.name; 
-  
+  const contactName = firstAccount.name;
+
   const headerColor = isGroom ? 'text-indigo-800' : 'text-[#a37c35]';
   const headerTitle = `${contactName}님께 마음 전하실 곳`;
 
-  return (
-    // ✅ 배경은 검은색 반투명
-    <div 
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+  // ✅ 모달 본체 UI
+  const modalContent = (
+    <div
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
         }
       }}
     >
-      {/* ✅ 팝업 본체: 불투명 흰색 */}
-      <div className="
-        bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm 
-        transform transition-all duration-300
-      ">
+      <div className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm transform transition-all duration-300">
         <div className="flex justify-between items-start mb-5 pb-2 border-b">
-          <h3 className={`text-xl font-bold ${headerColor}`}>
-            {headerTitle}
-          </h3>
-          <button 
+          <h3 className={`text-xl font-bold ${headerColor}`}>{headerTitle}</h3>
+          <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-800 transition-colors p-1"
           >
@@ -185,12 +190,18 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
           </button>
         </div>
 
-        <div className="space-y-4 max-h-80 overflow-y-auto"> 
+        <div className="space-y-4 max-h-80 overflow-y-auto">
           {selectedAccounts.map((account, index) => (
-            <AccountCard key={index} account={account} />
+            <div
+              key={index}
+              className="border border-gray-200 p-3 rounded-lg bg-gray-50 shadow-sm"
+            >
+              <p className="font-semibold">{account.bank} {account.number}</p>
+              <p className="text-sm text-gray-600">{account.name}</p>
+            </div>
           ))}
         </div>
-        
+
         <div className="mt-6 text-center text-sm text-gray-500 pt-4 border-t border-gray-100">
           <p className="text-gray-600 font-medium">
             복사 버튼을 누르면 계좌번호가 <span className="text-indigo-600">자동으로 복사</span>됩니다.
@@ -199,7 +210,13 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
       </div>
     </div>
   );
+
+  // ✅ body에 바로 렌더링
+  return ReactDOM.createPortal(modalContent, document.body);
 };
+
+export default AccountModal;
+
 
 // ------------------------------------
 // 3. 메인 ContactInfo
