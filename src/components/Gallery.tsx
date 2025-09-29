@@ -14,7 +14,8 @@ import image6 from './image/JEJ_5370.jpg';
 import image7 from './image/JMD00086.jpg';
 import image8 from './image/JMD00234.jpg';
 // 💡 새로운 가족 사진 Import
-import familyImage from './image/family_01.jpg'; 
+import familyImage1 from './image/family_01.jpg'; 
+import familyImage2 from './image/family_02.jpg'; 
 
 
 // 갤러리 이미지 데이터 구조를 확장하여 colSpan(열 너비) 속성을 추가합니다.
@@ -27,8 +28,8 @@ const galleryImages = [
   { src: image6, alt: "웨딩 사진2", colSpan: 1 },
   { src: image7, alt: "웨딩 사진3", colSpan: 1 },
   { src: image8, alt: "웨딩 사진4", colSpan: 1 },
-  // 💡 마지막 가족 사진 추가: colSpan을 2로 설정
-  { src: familyImage, alt: "가족 사진", colSpan: 2 } 
+  { src: familyImage1, alt: "가족 사진", colSpan: 1 }
+  { src: familyImage2, alt: "가족 사진2", colSpan: 1 }
 ];
 
 export function Gallery() {
