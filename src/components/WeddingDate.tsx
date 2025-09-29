@@ -16,6 +16,14 @@ export function WeddingDate() {
             <MapPin size={18} />
             <span>대전에서 태어났지만 서울에서</span>
           </div>
+        
+          <div className="flex items-center justify-center space-x-2 text-muted-foreground">
+            <span> 오랜 대화 끝에, 결혼식 대신 <br />
+          조용히 새로운 출발을 하기로 했습니다.<br />
+          직접 초대하여 인사드리지 못함을 <br />
+          너그러이 이해해 주시길 바라며,<br />
+          이 소식을 전할 수 있음에 깊이 감사드립니다.<br /></span>
+          </div>
         </div>
         
         {/* 달력 */}

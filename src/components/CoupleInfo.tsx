@@ -31,7 +31,7 @@ export function CoupleInfo() {
         <p className="text-center text-muted-foreground leading-relaxed">
           서로 다른 삶을 살아온 두 사람이<br />
           하나의 사랑으로 만나<br />
-          평생을 함께 하고자 합니다.
+          평생을 함께 하고자 합니다.<br />
         </p>
       </div>
     </div>
