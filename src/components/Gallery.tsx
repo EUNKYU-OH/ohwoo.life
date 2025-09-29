@@ -4,8 +4,8 @@ import { X } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback'; 
 
 // ⭐️ 로컬 이미지 Import (Vite/Webpack으로 Asset을 처리)
-import image1 from './image/first_01.jpg';
 import image2 from './image/first_02.jpg';
+import image1 from './image/first_01.jpg';
 import image3 from './image/second_01.jpg';
 import image4 from './image/second_02.jpg';
 // ⭐️ 웨딩사진 Import (Vite/Webpack으로 Asset을 처리)
