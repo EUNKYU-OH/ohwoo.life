@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 // ImageWithFallback 컴포넌트의 import 경로를 환경에 맞게 조정합니다.
-// 고객님의 기존 코드를 기반으로 유지합니다.
 import { ImageWithFallback } from './figma/ImageWithFallback'; 
 
 // ⭐️ 로컬 이미지 Import (Vite/Webpack으로 Asset을 처리)
@@ -14,8 +13,6 @@ import familyImage from './image/family_01.jpg';
 
 
 // 갤러리 이미지 데이터 구조를 확장하여 colSpan(열 너비) 속성을 추가합니다.
-// colSpan: 1 은 기본 2열 그리드에서 1칸을 차지하며,
-// colSpan: 2 는 2칸(전체 너비)을 차지합니다.
 const galleryImages = [
   { src: image1, alt: "옛날 사진1", colSpan: 1 },
   { src: image2, alt: "옛날 사진2", colSpan: 1 },
@@ -45,8 +42,9 @@ export function Gallery() {
               // 💡 colSpan 값에 따라 클래스를 동적으로 적용합니다.
               className={`
                 ${image.colSpan === 2 
-                  ? 'col-span-2 h-auto' // 2열 차지, 높이는 내용물에 따라 자동 설정
-                  : 'col-span-1 aspect-square' // 1열 차지, 1:1 비율 유지
+                  // 💡 2열 차지 + 높이 강제 지정 (h-64 = 256px) + object-cover를 사용해 컨테이너를 채웁니다.
+                  ? 'col-span-2 h-64' 
+                  : 'col-span-1 aspect-square'
                 } 
                 overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity
               `}
@@ -55,7 +53,6 @@ export function Gallery() {
               <ImageWithFallback
                 src={image.src}
                 alt={image.alt}
-                // 💡 1열 사진은 object-cover로 비율을 채우고, 2열 사진은 object-contain으로 전체를 보여줍니다.
                 className="w-full h-full object-cover" 
               />
             </div>
