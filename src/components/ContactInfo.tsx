@@ -137,10 +137,10 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
   const btnColor = isGroom ? 'text-indigo-600' : 'text-[#a37c35]';
   const btnHoverColor = isGroom ? 'hover:bg-indigo-50' : 'hover:bg-[#fcf5ec]';
 
-  // 모달 본체 UI: 요청하신 이미지 모달과 유사하게 `fixed inset-0 bg-black/50` 사용
-    return (
+    // 모달 본체 UI: 배경을 연한 회색으로 설정하여 카드와 구분
+  return (
     <div
-      className="fixed inset-0 bg-white flex items-center justify-center z-[9999] p-4" // ✅ 배경을 불투명 흰색으로 변경
+      className="fixed inset-0 bg-gray-100 flex items-center justify-center z-[9999] p-4" // ✅ 배경을 연한 회색으로 변경
       onClick={(e) => {
         // 배경 클릭 시 닫기
         if (e.target === e.currentTarget) {
