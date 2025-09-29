@@ -189,7 +189,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
   const headerTitle = `${contactName}님께 마음 전하실 곳`;
 
   return (
-    // 모달 배경: 검은색 60% 투명도로 설정
+    // 모달 배경: 검은색 60% 투명도로 설정 (전체 화면 덮음)
     <div 
       className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
       onClick={(e) => {
@@ -199,7 +199,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
         }
       }}
     >
-      {/* 모달 본체: bg-white로 흰색 배경 적용 */}
+      {/* ⭐️ 모달 본체: bg-white로 흰색 배경을 확실히 적용하고 p-6으로 내부 여백 확보 */}
       <div className={`
         bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm 
         transform transition-all duration-300
@@ -217,7 +217,8 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
           </button>
         </div>
 
-        <div className="space-y-4 max-h-80 overflow-y-auto pr-2">
+        {/* ⭐️ 스크롤 영역: pr-2 클래스 제거하여 스크롤바 옆 여백의 배경 투명 문제 방지 */}
+        <div className="space-y-4 max-h-80 overflow-y-auto"> 
           {/* 이제 특정 인물의 계좌(보통 1개)만 렌더링 */}
           {selectedAccounts.map((account, index) => (
             <AccountCard key={index} account={account} />
