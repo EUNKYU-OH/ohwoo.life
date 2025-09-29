@@ -139,19 +139,18 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
 
   // 모달 본체 UI: 요청하신 이미지 모달과 유사하게 `fixed inset-0 bg-black/50` 사용
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4" // ✅ 배경을 반투명 검은색으로, 최상단 고정
-      onClick={(e) => {
-        // 배경 클릭 시 닫기
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
-    >
-      <div
-        className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm transform transition-all duration-300 z-50" // 모달 본체 흰색 배경 유지
-        onClick={(e) => e.stopPropagation()} // 모달 내부 클릭 시 배경 클릭 이벤트 방지
-      >
+      <div
+        className="fixed inset-0 bg-white/95 flex items-center justify-center z-[9999] p-4" // ✅ 배경 완전 불투명 흰색
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            onClose();
+          }
+       }}
+      >
+      <div
+        className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-sm transform transition-all duration-300 z-50"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-between items-start mb-5 pb-2 border-b border-gray-100">
           {/* 모달 헤더: 신랑 오은규님께 마음 전하실 곳 */}
           <h3 className={`text-xl font-bold ${headerColor}`}>{headerTitle}</h3>
