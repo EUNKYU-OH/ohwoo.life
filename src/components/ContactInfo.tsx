@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { createPortal } from 'react-dom'; // 모달 렌더링을 위해 ReactDOM의 createPortal 사용
+// createPortal을 사용하기 위해 'react-dom'에서 직접 import
+import { createPortal } from 'react-dom'; 
+// lucide-react 아이콘 사용
 import { MessageSquare, CreditCard, Clipboard, X } from 'lucide-react';
 
 // ------------------------------------
@@ -87,6 +89,7 @@ const showToast = (message: string, isError: boolean = false) => {
 };
 
 const copyToClipboard = (text: string, name: string) => {
+  // 공백 및 하이픈 제거
   const rawText = text.replace(/ /g, '').replace(/-/g, '').trim(); 
   const el = document.createElement('textarea');
   el.value = rawText;
@@ -114,7 +117,7 @@ const copyToClipboard = (text: string, name: string) => {
 
 
 // ------------------------------------
-// 4. AccountModal (수정된 모달 컴포넌트)
+// 4. AccountModal
 // ------------------------------------
 interface AccountModalProps {
   selectedAccounts: Account[];
@@ -133,7 +136,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
   const btnColor = isGroom ? 'text-indigo-600' : 'text-[#a37c35]';
   const btnHoverColor = isGroom ? 'hover:bg-indigo-50' : 'hover:bg-[#fcf5ec]';
 
-  // ✅ 모달 본체 UI (배경 불투명도 및 z-index 수정)
+  // 모달 본체 UI (배경 불투명도 및 z-index 수정)
   const modalContent = (
     <div
       // FIXED: 배경 불투명도를 bg-black/75로 높여 뒷배경을 확실히 어둡게 처리했습니다.
@@ -196,9 +199,10 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
 
 
 // ------------------------------------
-// 3. 메인 App 컴포넌트
+// 3. 메인 ContactInfo 컴포넌트 (이름 지정 내보내기로 수정)
 // ------------------------------------
-export default function App() {
+// ERROR FIX: 'export default function App()' -> 'export function ContactInfo()'로 변경
+export function ContactInfo() { 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAccounts, setSelectedAccounts] = useState<Account[]>([]);
 
@@ -314,7 +318,7 @@ export default function App() {
             </div>
             
             <div className="text-center text-xs text-gray-500 pt-6 border-t mt-8 border-gray-100">
-              <p className="text-xl font-medium text-gray-700">오셔서 축복해 주시면 감사하겠습니다 💕</p>
+              <p className="text-xl font-medium text-gray-700"> 감사합니다 💕</p>
             </div>
           </div>
         </div>
