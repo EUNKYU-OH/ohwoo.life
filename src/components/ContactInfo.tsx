@@ -117,7 +117,7 @@ const copyToClipboard = (text: string, name: string) => {
 }; 
 
 // ------------------------------------ 
-// 3. AccountModal (팝업 디자인/기능 유지)
+// 3. AccountModal (팝업 배경 완전히 불투명하게 수정)
 // ------------------------------------ 
 interface AccountModalProps { 
   selectedAccounts: Account[]; 
@@ -137,10 +137,10 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
   const btnColor = isGroom ? 'text-indigo-600' : 'text-[#a37c35]';
   const btnHoverColor = isGroom ? 'hover:bg-indigo-50' : 'hover:bg-[#fcf5ec]';
 
-  // 모달 본체 UI (사용자 요청에 맞춰 복사 버튼 포함)
+  // 모달 본체 UI (배경을 완전히 불투명하게 bg-black으로 수정)
   const modalContent = ( 
     <div 
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999] p-4 backdrop-blur-sm"
+      className="fixed inset-0 bg-black flex items-center justify-center z-[9999] p-4" // ✅ bg-black으로 변경하여 완전히 불투명하게 만듦
       onClick={(e) => { 
         // 배경 클릭 시 닫기
         if (e.target === e.currentTarget) { 
@@ -198,7 +198,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ selectedAccounts, onClose }
 }; 
 
 // ------------------------------------ 
-// 4. 메인 ContactInfo (이름 지정 내보내기로 수정 및 UI 복구)
+// 4. 메인 ContactInfo 
 // ------------------------------------ 
 export function ContactInfo() { 
   const [isModalOpen, setIsModalOpen] = useState(false); 
