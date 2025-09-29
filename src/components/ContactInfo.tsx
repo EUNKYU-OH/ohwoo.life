@@ -88,32 +88,41 @@ const showToast = (message: string, isError: boolean = false) => {
   }, 300);
 };
 
-const copyToClipboard = (text: string, name: string) => {
-  // 공백 및 하이픈 제거
-  const rawText = text.replace(/ /g, '').replace(/-/g, '').trim();
-  const el = document.createElement('textarea');
-  el.value = rawText;
-  el.style.position = 'fixed';
-  el.style.top = '0';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-
-  el.focus();
-  el.select();
-  el.setSelectionRange(0, 99999);
-
-  try {
-    // `document.execCommand('copy')`를 사용하여 클립보드 복사 실행
-    const successful = document.execCommand('copy');
-    if (successful) {
-      showToast(`${name}님의 계좌번호 (${rawText})가 복사되었습니다!`);
-    } else {
-      showToast('복사에 실패했습니다.', true);
-    }
-  } catch (err) {
-    showToast('복사 기능이 지원되지 않는 브라우저입니다.', true);
-  }
-  document.body.removeChild(el);
+const copyToClipboard = async (text: string, name: string) => {
+  // 공백 및 하이픈 제거
+  const rawText = text.replace(/ /g, '').replace(/-/g, '').trim();
+  
+  try {
+    // 최신 Clipboard API 사용
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(rawText);
+      showToast(`${name}님의 계좌번호가 복사되었습니다!`);
+    } else {
+      // 구형 브라우저 대비 fallback
+      const el = document.createElement('textarea');
+      el.value = rawText;
+      el.style.position = 'fixed';
+      el.style.top = '0';
+      el.style.left = '-9999px';
+      document.body.appendChild(el);
+      
+      el.focus();
+      el.select();
+      el.setSelectionRange(0, 99999);
+      
+      const successful = document.execCommand('copy');
+      document.body.removeChild(el);
+      
+      if (successful) {
+        showToast(`${name}님의 계좌번호가 복사되었습니다!`);
+      } else {
+        showToast('복사에 실패했습니다.', true);
+      }
+    }
+  } catch (err) {
+    showToast('복사 기능을 사용할 수 없습니다.', true);
+    console.error('복사 오류:', err);
+  }
 };
 
 // ------------------------------------
