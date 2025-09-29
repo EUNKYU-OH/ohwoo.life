@@ -1,3 +1,5 @@
+import React from 'react';  
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import mainPhotoSrc from './image/JEJ_4870.JPG';
 
 // 💡 필수: 로컬 이미지를 React/Vite 빌드 시스템으로 가져옵니다.
