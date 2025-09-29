@@ -243,7 +243,7 @@ export function ContactInfo() {
   return (
     <div className="py-8 px-6">
       <div className="text-center space-y-6">
-        <h2 className="text-2xl font-bold mb-6">연락처 및 마음 전하실 곳</h2>
+        <h2 className="text-2xl font-bold mb-6">연락처</h2>
 
         <div className="space-y-6">
           {/* 신랑측 */}
