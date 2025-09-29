@@ -42,8 +42,8 @@ export function Gallery() {
               // 💡 colSpan 값에 따라 클래스를 동적으로 적용합니다.
               className={`
                 ${image.colSpan === 2 
-                  // 💡 2열 차지 + 높이 강제 지정 (h-64 = 256px) + object-cover를 사용해 컨테이너를 채웁니다.
-                  ? 'col-span-2 h-64' 
+                  // 💡 2열 차지 + 3175/2461 비율 적용 (약 1.29:1) + object-contain을 사용해 이미지가 잘리지 않게 함
+                  ? 'col-span-2 aspect-[129/100] p-1' 
                   : 'col-span-1 aspect-square'
                 } 
                 overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity
@@ -53,7 +53,8 @@ export function Gallery() {
               <ImageWithFallback
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover" 
+                // 💡 colSpan=2 인 경우 object-contain을 사용해 이미지가 잘리지 않고 프레임에 맞춰 들어갑니다.
+                className={`w-full h-full ${image.colSpan === 2 ? 'object-contain' : 'object-cover'}`}
               />
             </div>
           ))}
