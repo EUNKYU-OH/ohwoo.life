@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 // ImageWithFallback 컴포넌트의 import 경로를 MainPhoto.tsx에서 성공했던 alias 경로로 통일합니다.
-import { ImageWithFallback } from '@/components/ImageWithFallback'; 
+import { ImageWithFallback } from './figma/ImageWithFallback'; 
 
 // ⭐️ 로컬 이미지 Import (Vite/Webpack으로 Asset을 처리)
 // image 폴더가 Gallery.tsx와 같은 레벨에 있다고 가정합니다.
