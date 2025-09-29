@@ -18,10 +18,11 @@ export function Storytelling() {
             </div>
             <h3 className="text-lg text-primary">첫 만남</h3>
             <p className="text-muted-foreground leading-relaxed">
-              2015년 요가를 수련하며<br />
-              처음 만났습니다.<br />
-              blabla<br />
-              blabla
+              2015년 26, 24 요가를 수련하며<br />
+              함께 알게 된 누나 동생 사이가<br />
+              아직 어른이 되기 전에 연인이 되어<br />
+              행복한 2년 철없이 사랑하다<br />
+              사회에 나와 자리를 잡으며 놓쳤습니다.
             </p>
           </div>
           
@@ -32,10 +33,11 @@ export function Storytelling() {
             </div>
             <h3 className="text-lg text-primary">운명의 재회</h3>
             <p className="text-muted-foreground leading-relaxed">
-              10년만에 하늘이 저희를 다시 만나게 해줬습니다.<br />
-              blabla<br />
-              blabla<br />
-              blabla
+              서로가 없는 시간 속에 정말 중요한<br />
+              정말 중요한 것을 알게 됐고<br />
+              10년만인 36, 34에 하늘이 저희를 다시 만나게 해줬습니다.<br />
+              다시는 어떤 이유로 놓치지 않고<br />
+              평생을 함께 하는 연인이 되기로 약속 했습니다.<br />
             </p>
           </div>
           
@@ -46,10 +48,12 @@ export function Storytelling() {
             </div>
             <h3 className="text-lg text-primary">평생의 약속</h3>
             <p className="text-muted-foreground leading-relaxed">
-              서로를 더 깊이 알아가며<br />
-              함께하는 시간이 소중해졌습니다.<br />
-              이제 평생을 함께 걸어가고자<br />
-              약속을 나누려 합니다.
+              둘이 함께일 때 더욱 성장하며<br />
+              같이 있을 때 가장 나다운 모습으로 즐겁고<br />
+              서로 다른 모습에서 행복을 느끼는<br />
+              이제는 누나, 동생, 여친, 남친이 아닌<br />
+              아내, 남편, 가족이라는 이름으로<br />
+              평생을 함께 하고자 합니다.<br />
             </p>
           </div>
         </div>

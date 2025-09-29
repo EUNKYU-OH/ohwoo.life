@@ -2,24 +2,24 @@ export function ThankYou() {
   return (
     <div className="py-8 px-6 bg-primary/5">
       <div className="text-center space-y-6">
-        <h2 className="text-xl">성혼선언문</h2>
+        <h2 className="text-xl">감사 인사</h2>
         
         <div className="space-y-4 text-muted-foreground leading-relaxed">
           <p>
-            저희 두 사람이 사랑으로 하나가 되어<br />
-            새로운 시작을 하려 합니다.
+            무슨 일이 있어도 서로를 믿고 <br />
+            서로를 놓지 않겠습니다.
           </p>
           
           <p>
-            오랜 시간 저희를 사랑해 주시고<br />
-            격려해 주신 모든 분들께<br />
-            깊은 감사를 드립니다.
+            가족이라는 따듯한 보금자리를<br />
+            평생을 즐겁게 보낼 편한 친구처럼<br />
+            그렇게 인생을 보내고자 합니다.
           </p>
           
           <p>
-            바쁘시더라도 잠시 시간을 내어<br />
-            저희의 새 출발을 축복해 주시면<br />
-            더없는 기쁨이겠습니다.
+            저희를 항상 이쁘게 봐주시는 가족들<br />
+            언제, 어디서든 응원해주시는 친구, 지인 분들<br />
+            짧은 글로나마 진심으로 감사를 표합니다.
           </p>
         </div>
         
